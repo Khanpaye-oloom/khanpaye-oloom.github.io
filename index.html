@@ -5,66 +5,328 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>خانه‌پایه می‌آموزد</title>
+
+  <!-- متغیرهای پایه -->
   <style>
-    /* Reset & base */
+    :root {
+      --bg: #fbfbfd;
+      --card: #ffffff;
+      --primary: #ff9f1c;
+      --accent: #ffda7a;
+      --muted: #6b6b6b;
+      --text: #111;
+      --shadow: 0 6px 18px rgba(15, 20, 30, 0.06);
+      --green: #22c55e;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 12px;
+    }
+
+    /* پایه‌ها */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html,
     body {
-      height: 100%;
-      font-family: "Vazirmatn", "Tahoma", sans-serif;
-      background: #faf9fb;
-      color: #222;
+      margin: 0;
+      font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    :root {
-      --primary: #f7b500;
-      /* yellow */
-      --accent: #ffb84d;
-      --muted: #f3f4f6;
-      --card: #ffffff;
-      --green: #2f855a;
-      --danger: #ef4444;
-      --shadow: 0 6px 18px rgba(12, 20, 30, 0.06);
-      --radius: 14px;
+    a {
+      color: inherit
     }
 
-    /* container */
     .wrap {
-      max-width: 1200px;
-      margin: 28px auto;
-      padding: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px;
     }
 
-    /* header */
-    header {
+    /* ====== Header ====== */
+    header.site-header {
+      background: linear-gradient(180deg, rgba(247, 181, 0, 0.03), var(--card));
+      border-bottom: 1px solid rgba(12, 20, 30, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      backdrop-filter: blur(6px);
+    }
+
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 18px;
+      padding: 10px 0;
     }
 
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .logo .mark {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary), #ffd27a);
+    .mark {
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), #ffd27a);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    nav.header-nav {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    nav.header-nav a {
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    nav.header-nav a:hover {
+      color: var(--text);
+      background: rgba(0, 0, 0, 0.02)
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      border: 0;
+    }
+
+    /* offcanvas menu (mobile) */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      background: rgba(0, 0, 0, 0.35);
+      align-items: stretch;
+    }
+
+    .mobile-drawer {
+      margin-inline-start: auto;
+      /* slide from right because RTL */
+      width: 320px;
+      max-width: 92%;
+      background: var(--card);
+      padding: 18px;
+      box-shadow: -8px 0 24px rgba(10, 12, 20, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-drawer .close-btn {
+      justify-self: flex-start
+    }
+
+    .mobile-drawer .drawer-sect {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(12, 20, 30, 0.04)
+    }
+
+    .mobile-drawer a {
+      display: block;
+      padding: 10px 6px;
+      text-decoration: none;
+      color: var(--text);
+      border-radius: 8px
+    }
+
+    .mobile-drawer a.small {
+      font-size: 14px;
+      color: var(--muted)
+    }
+
+    .mobile-drawer .socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .mobile-drawer .newsletter {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    /* ====== Footer (desktop / large) ====== */
+    .site-footer {
+      background: linear-gradient(180deg, rgba(247, 181, 0, 0.15), #fefefe);
+      border-top: 1px solid rgba(12, 20, 30, 0.04);
+      padding: 36px 0;
+      margin-top: 28px;
+      color: #333;
+      font-size: 14px;
+      direction: rtl;
+    }
+
+    .site-footer .footer-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr 260px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .site-footer .footer-logo .mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: inline-grid;
       place-items: center;
       font-weight: 700;
       color: #fff;
       box-shadow: var(--shadow);
+    }
+
+    .site-footer .footer-col h5 {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #111;
+    }
+
+    .site-footer .footer-col p {
+      color: #5e5e5e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .site-footer .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links a {
+      color: #444;
+      text-decoration: none;
+      display: inline-block;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .newsletter {
+      background: var(--card);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .newsletter input {
+      border: 0;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      width: 100%;
+      padding: 6px;
+    }
+
+    .newsletter button {
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #444;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      border-top: 1px dashed rgba(12, 20, 30, 0.04);
+      padding-top: 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* back-to-top */
+    .to-top {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      background: var(--primary);
+      color: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      z-index: 60;
+    }
+
+    /* ====== Styles from index.html ====== */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .logo h1 {
@@ -77,52 +339,6 @@
     .logo p {
       font-size: 12px;
       color: #666;
-    }
-
-    nav {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    nav a {
-      color: #444;
-      text-decoration: none;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: 10px;
-    }
-
-    nav a.cta {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .search {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 8px 12px;
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      width: 320px;
-    }
-
-    .search input {
-      border: 0;
-      outline: none;
-      background: transparent;
-      width: 100%;
-      font-size: 14px;
-      direction: ltr;
     }
 
     /* hero */
@@ -344,8 +560,74 @@
       justify-content: center;
     }
 
-    /* responsive */
+    /* small tweaks */
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer
+    }
+
+    input[type="search"] {
+      border: 1px solid rgba(12, 20, 30, 0.04);
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: transparent
+    }
+
+    /* ====== Mobile / Responsive ====== */
     @media (max-width:900px) {
+      nav.header-nav {
+        display: none
+      }
+
+      .hamburger {
+        display: grid
+      }
+
+      .site-footer .footer-grid {
+        display: none
+      }
+
+      /* hide big footer on mobile */
+      .site-footer {
+        padding: 14px 0
+      }
+
+      .mobile-footer {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: var(--card);
+        border-radius: 14px;
+        box-shadow: var(--shadow)
+      }
+
+      .mobile-footer .mini-links {
+        display: flex;
+        gap: 8px;
+        align-items: center
+      }
+
+      .mobile-footer a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none
+      }
+
+      .mobile-footer .copyright {
+        font-size: 12px;
+        color: var(--muted)
+      }
+
+      .mobile-drawer {
+        width: 86%
+      }
+
+      /* responsive styles from index.html */
       .hero {
         flex-direction: column;
         text-align: center;
@@ -357,10 +639,6 @@
     }
 
     @media (max-width:600px) {
-      nav {
-        display: none;
-      }
-
       .search {
         width: 100%;
       }
@@ -373,36 +651,105 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <!-- Header -->
-    <header>
-      <div class="logo">
-        <div class="mark">مُنت</div>
+
+  <!-- ====== Header ====== -->
+  <header class="site-header" role="banner" aria-label="سرصفحه">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">مُنت</div>
         <div>
-          <h1>خانه‌پایه می‌آموزد</h1>
-          <p>تحقق رویای آموزش با کیفیت و کم‌هزینه</p>
+          <div style="font-weight:700">خانه‌پایه می‌آموزد</div>
+          <div style="font-size:13px;color:var(--muted)">آموزش کاربردی و در دسترس</div>
         </div>
       </div>
 
-      <nav>
-        <a href="/videos.html" class="cta">ویدئوها</a>
+      <!-- desktop nav -->
+      <nav class="header-nav" role="navigation" aria-label="ناوبری اصلی">
+        <a href="/videos.html">ویدئوها</a>
         <a href="/pamphlets.html">جزوات</a>
-        <a href="/contact.html">تماس با ما</a>
+        <a href="/shop.html">فروشگاه</a>
+        <a href="/contact.html">تماس</a>
       </nav>
 
       <div class="header-actions">
-        <div class="search" role="search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 21l-4.35-4.35" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <circle cx="11" cy="11" r="6" stroke="#9aa0a6" stroke-width="2" />
-          </svg>
-          <input type="text" placeholder="جستجو در دوره‌ها..." />
-        </div>
-        <a href="/shop.html" title="سبد خرید">🛒</a>
-      </div>
-    </header>
+        <form role="search" aria-label="جستجو" style="display:flex;gap:8px;align-items:center">
+          <input type="search" placeholder="جستجو..." aria-label="عبارت جستجو"
+            style="padding:8px 10px;border-radius:10px;border:1px solid rgba(12,20,30,0.04)" />
+        </form>
 
+        <!-- hamburger visible on mobile -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="باز کردن منو" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <!-- simple icon -->
+          <svg width="20" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="#111" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== Mobile off-canvas menu ====== -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+    <div style="flex:1;display:flex;justify-content:flex-start;align-items:flex-start;" tabindex="-1" id="overlayClose">
+    </div>
+
+    <aside class="mobile-drawer" role="menu" aria-label="منوی موبایل">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="mark" style="width:38px;height:38px">مُ</div>
+          <div>
+            <div style="font-weight:700">خانه‌پایه</div>
+            <div style="font-size:13px;color:var(--muted)">منوی سریع</div>
+          </div>
+        </div>
+        <button class="close-btn btn-ghost" id="drawerCloseBtn" aria-label="بستن منو">بستن</button>
+      </div>
+
+      <!-- منوی هدر (شامل همان لینک‌های هدر) -->
+      <div class="drawer-sect" aria-label="لینک‌های اصلی">
+        <a href="/videos.html" role="menuitem">ویدئوها</a>
+        <a href="/pamphlets.html" role="menuitem">جزوات</a>
+        <a href="/shop.html" role="menuitem">فروشگاه</a>
+        <a href="/contact.html" role="menuitem">تماس با ما</a>
+      </div>
+
+      <!-- بخشهای مفید اضافی -->
+      <div class="drawer-sect" aria-label="پشتیبانی و قوانین">
+        <a href="/faq.html" class="small" role="menuitem">سؤالات متداول</a>
+        <a href="/terms.html" class="small" role="menuitem">قوانین و مقررات</a>
+        <a href="/privacy.html" class="small" role="menuitem">حریم خصوصی</a>
+      </div>
+
+      <!-- خبرنامه -->
+      <div class="drawer-sect" aria-label="اشتراک در خبرنامه">
+        <div style="font-weight:700;margin-bottom:6px">خبرنامه</div>
+        <div class="newsletter" role="form" aria-label="فرم اشتراک در خبرنامه (موبایل)">
+          <input type="email" placeholder="ایمیل شما" aria-label="ایمیل برای اشتراک" />
+          <button type="button" onclick="alert('عضویت ثبت شد — نمونه');">عضویت</button>
+        </div>
+      </div>
+
+      <!-- شبکه‌های اجتماعی -->
+      <div class="drawer-sect" aria-label="شبکه‌های اجتماعی">
+        <div style="font-weight:700;margin-bottom:6px">ما را دنبال کنید</div>
+        <div class="socials" role="group" aria-label="لینک شبکه‌های اجتماعی">
+          <a href="https://t.me/" target="_blank" rel="noopener">تلگرام</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener">اینستاگرام</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener">یوتیوب</a>
+        </div>
+      </div>
+
+      <!-- لینک‌های کمجا/مفید پایین در موبایل -->
+      <div style="margin-top:auto;font-size:13px;color:var(--muted);">
+        <a href="/sitemap.xml">نقشه سایت</a> · <a href="/contact.html">ارتباط</a>
+        <div style="margin-top:8px;font-size:12px;">© <span id="drawer-year"></span> خانه‌پایه</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ====== Main content from index.html ====== -->
+  <main class="wrap" style="padding-top:18px;padding-bottom:18px;">
     <!-- Hero -->
     <section class="hero" aria-label="بنر اصلی">
       <div class="left">
@@ -498,7 +845,175 @@
 
       </div>
     </section>
-  </div>
+  </main>
+
+  <!-- ====== Footer (desktop full) ====== -->
+  <footer class="site-footer" role="contentinfo" aria-label="پاورقی سایت">
+    <div class="wrap">
+      <div class="footer-grid">
+        <!-- column 1: logo + desc -->
+        <div class="footer-col footer-logo">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="mark" style="background:linear-gradient(135deg,var(--primary),#ffd27a);">مُنت</div>
+            <div>
+              <h3 style="font-size:16px;margin-bottom:4px;">خانه‌پایه می‌آموزد</h3>
+              <p style="margin:0;color:#6b6b6b;font-size:13px;">آموزش با کیفیت، در دسترس و مقرون‌به‌صرفه —
+                پروژه‌ای برای دسترسی همگانی به منابع آموزشی.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <span style="font-weight:700;color:var(--green);">پشتیبانی:</span>
+              <a href="tel:+981234567890" style="color:#444;text-decoration:none;">۰۹۱۲-۱۲۳-۴۵۶۷</a>
+            </div>
+            <div style="margin-top:8px;color:#777;font-size:13px;">ایمیل: <a
+                href="mailto:hello@khanepaye.ir">hello@khanepaye.ir</a></div>
+          </div>
+        </div>
+
+        <!-- column 2: useful links -->
+        <div class="footer-col footer-links" aria-label="لینک‌های مفید">
+          <div>
+            <h5>صفحات</h5>
+            <ul>
+              <li><a href="/videos.html">ویدئوها</a></li>
+              <li><a href="/pamphlets.html">جزوات</a></li>
+              <li><a href="/shop.html">فروشگاه</a></li>
+              <li><a href="/contact.html">تماس با ما</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>پشتیبانی</h5>
+            <ul>
+              <li><a href="/faq.html">سؤالات متداول</a></li>
+              <li><a href="/terms.html">قوانین و مقررات</a></li>
+              <li><a href="/privacy.html">حریم خصوصی</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- column 3: newsletter + socials -->
+        <div class="footer-col">
+          <h5>خبرنامه</h5>
+          <div class="newsletter" role="form" aria-label="فرم اشتراک در خبرنامه">
+            <input type="email" placeholder="ایمیل‌تان را اینجا وارد کنید" aria-label="ایمیل برای اشتراک" />
+            <button type="button" onclick="alert('با موفقیت ثبت شد — نمونه');">عضویت</button>
+          </div>
+
+          <div style="margin-top:14px;">
+            <h5>ما را دنبال کنید</h5>
+            <div class="socials" aria-label="شبکه‌های اجتماعی">
+              <a href="https://t.me/" target="_blank" rel="noopener">📨 تلگرام</a>
+              <a href="https://instagram.com/" target="_blank" rel="noopener">📷 اینستاگرام</a>
+              <a href="https://youtube.com/" target="_blank" rel="noopener">▶ یوتیوب</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom" role="note">
+        <div>© <span id="copy-year"></span> خانه‌پایه می‌آموزد — همهٔ حقوق برای ما محفوظ است.</div>
+        <div>
+          <a href="/sitemap.xml" style="color:#666;text-decoration:none;margin-left:12px;">نقشه سایت</a>
+          <a href="/contact.html" style="color:#666;text-decoration:none;">ارتباط با ما</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Mobile minimal footer (کم‌جا) ====== -->
+    <div style="padding:12px" class="wrap">
+      <div class="mobile-footer" role="contentinfo" aria-label="فوتر موبایل" style="display:none">
+        <div class="mini-links">
+          <a href="/videos.html" aria-label="ویدئوها">ویدئوها</a>
+          <a href="/pamphlets.html" aria-label="جزوات">جزوات</a>
+        </div>
+        <div class="copyright">
+          © <span id="mobile-year"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- back to top -->
+  <button class="to-top" aria-label="بازگشت به بالا" title="بازگشت به بالا">↑</button>
+
+  <!-- ====== Scripts ====== -->
+  <script>
+    // set years
+    (function () {
+      var y = new Date().getFullYear();
+      var copy = document.getElementById('copy-year');
+      var mY = document.getElementById('mobile-year');
+      var dY = document.getElementById('drawer-year');
+      if (copy) copy.textContent = y;
+      if (mY) mY.textContent = y;
+      if (dY) dY.textContent = y;
+    })();
+
+    // back to top
+    document.querySelectorAll('.to-top').forEach(function (btn) {
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    });
+
+    // hamburger & mobile menu logic
+    (function () {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var drawerCloseBtn = document.getElementById('drawerCloseBtn');
+      var overlayClose = document.getElementById('overlayClose');
+
+      function openMenu() {
+        mobileMenu.style.display = 'flex';
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        hamburger.setAttribute('aria-expanded', 'true');
+        // show mobile footer (low-level RESPONSIVE)
+        showMobileFooterIfNeeded();
+        // lock scroll
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        mobileMenu.style.display = 'none';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger && hamburger.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeMenu(); else openMenu();
+      });
+
+      drawerCloseBtn && drawerCloseBtn.addEventListener('click', closeMenu);
+      overlayClose && overlayClose.addEventListener('click', closeMenu);
+
+      // close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // close when clicking a link inside drawer (nice UX)
+      document.querySelectorAll('.mobile-drawer a').forEach(function (a) {
+        a.addEventListener('click', function () { closeMenu(); });
+      });
+
+      // show minimal mobile footer when mobile width
+      function showMobileFooterIfNeeded() {
+        var mobileFooter = document.querySelector('.mobile-footer');
+        if (!mobileFooter) return;
+        if (window.matchMedia && window.matchMedia('(max-width:900px)').matches) {
+          mobileFooter.style.display = 'flex';
+        } else {
+          mobileFooter.style.display = 'none';
+        }
+      }
+      // run on load and resize
+      showMobileFooterIfNeeded();
+      window.addEventListener('resize', showMobileFooterIfNeeded);
+    })();
+  </script>
+
 </body>
 
 </html>
