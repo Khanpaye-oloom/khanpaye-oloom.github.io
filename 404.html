@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>صفحه پیدا نشد! | خانه‌پایه می‌آموزد</title>
+
+  <!-- Google Fonts (Vazirmatn) -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-light: #f7f9fc;
+      --primary: #6d5cff;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Vazirmatn", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+    }
+
+    .illustration {
+      max-width: 300px;
+      margin: 0 auto 32px;
+    }
+
+    .illustration img {
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem); /* فونت ریسپانسیو */
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(109, 92, 255, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(109, 92, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .btn-secondary:hover {
+      color: var(--primary);
+    }
+
+    @media (min-width: 500px) {
+      .actions {
+        flex-direction: row;
+      }
+      .btn {
+        width: auto;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  
+  <div class="container">
+    <div class="illustration">
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/404-error-3702338-3119129.png" alt="فضانورد گمشده در فضا">
+    </div>
+
+    <h1>اوه! در فضا گم شده‌اید!</h1>
+
+    <p>
+      صفحه‌ای که به دنبال آن بودید پیدا نشد. شاید آدرس را اشتباه وارد کرده‌اید یا این صفحه به یک سیاره دیگر منتقل شده است!
+    </p>
+
+    <div class="actions">
+      <a href="/" class="btn btn-primary">بازگشت به صفحه اصلی</a>
+      <a href="/courses.html" class="btn btn-secondary">مشاهده دوره‌ها</a>
+    </div>
+  </div>
+
+</body>
+
+</html>
